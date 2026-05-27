@@ -9,10 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+
+      - name: Install Dependencies
+        run: composer install --no-dev --optimize-autoloader
+
       - name: Create Instance
         env:
           OCI_USER_ID: ${{ secrets.OCI_USER_ID }}
